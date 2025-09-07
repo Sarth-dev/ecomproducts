@@ -141,7 +141,7 @@ export default function ListingPage() {
                   className="flex items-center gap-6 border rounded-lg p-4 shadow-md bg-white"
                 >
                   <img
-                    src={product.image}
+                    src={product.image || 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
                     alt={product.title}
                     className="w-24 h-24 object-contain rounded-lg border"
                   />
