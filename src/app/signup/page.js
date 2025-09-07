@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const api = axios.create({
-  baseURL: "https://ecomproductbackend.onrender.com/", 
+  baseURL: "https://ecomproductbackend.onrender.com/api", 
 });
 
 export default function Signup() {

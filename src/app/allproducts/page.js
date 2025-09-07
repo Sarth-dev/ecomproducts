@@ -6,7 +6,7 @@ import Navbar from "../component/Navbar";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://ecomproductbackend.onrender.com/", // Update with your backend API URL
+  baseURL: "https://ecomproductbackend.onrender.com/api", // Update with your backend API URL
 });
 
 export default function ListingPage() {

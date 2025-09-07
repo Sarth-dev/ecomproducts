@@ -5,7 +5,7 @@ import Navbar from "../component/Navbar";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://ecomproductbackend.onrender.com/", 
+  baseURL: "https://ecomproductbackend.onrender.com/api", 
 });
 
 const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
