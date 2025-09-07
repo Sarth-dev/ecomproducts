@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000/api", // Update to backend URL
+  baseURL: "https://ecomproductbackend.onrender.com/", // Update to backend URL
 });
 
 export default function Login() {
@@ -22,9 +22,9 @@ export default function Login() {
       const res = await api.post("/auth/login", { email, password });
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
-        // Set axios auth header for future requests
+       
         api.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
-        // Redirect to homepage or desired page
+        
         router.push("/");
       }
     } catch (error) {

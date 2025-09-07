@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -5,7 +6,7 @@ import Navbar from "../component/Navbar";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000/api", // Update with your backend API URL
+  baseURL: "https://ecomproductbackend.onrender.com/", // Update with your backend API URL
 });
 
 export default function ListingPage() {
@@ -23,11 +24,10 @@ export default function ListingPage() {
 
   const categories = ["Shoes", "Accessories", "Electronics", "Clothing"];
 
-  // On mount, check if user token exists
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      // Not logged in, redirect or show message
       router.push("/login"); // redirect to login page
       return;
     }
@@ -37,7 +37,6 @@ export default function ListingPage() {
     setIsLoading(false);
   }, [router]);
 
-  // Fetch products when filters change
   useEffect(() => {
     if (!loggedIn) return;
 
@@ -57,7 +56,7 @@ export default function ListingPage() {
     fetchProducts();
   }, [loggedIn, selectedCategories, minPrice, maxPrice]);
 
-  // Fetch cart for logged user
+  
   const fetchCart = async () => {
     try {
       const res = await api.get("/cart");
@@ -67,7 +66,7 @@ export default function ListingPage() {
     }
   };
 
-  // Add to cart function
+
   const addToCart = async (product) => {
     try {
       await api.post("/cart/add", { productId: product._id || product.id, qty: 1 });
@@ -78,7 +77,7 @@ export default function ListingPage() {
     }
   };
 
-  // Remove from cart function
+  
   const removeFromCart = async (productId) => {
     try {
       await api.post("/cart/remove", { productId });
@@ -88,7 +87,6 @@ export default function ListingPage() {
     }
   };
 
-  // Update quantity function
   const updateQty = async (productId, qty) => {
     if (qty < 1) return;
     try {
@@ -116,7 +114,7 @@ export default function ListingPage() {
     );
   }
 
-  // If not logged in (e.g., pushing redirect not completed), show nothing or message
+  
   if (!loggedIn) {
     return null;
   }

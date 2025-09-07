@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000/api", // Replace with your backend URL
+  baseURL: "https://ecomproductbackend.onrender.com/", 
 });
 
 export default function Signup() {
@@ -18,7 +18,7 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     setErrorMsg("");
-    // Basic validation example: mobile number numeric and length check
+   
     if (mobile.length < 7 || !/^\d+$/.test(mobile)) {
       setErrorMsg("Please enter a valid mobile number.");
       return;

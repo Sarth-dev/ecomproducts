@@ -1,13 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState, useEffect } from "react";
 import Navbar from "../component/Navbar";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000/api", // Update to your backend URL
+  baseURL: "https://ecomproductbackend.onrender.com/", 
 });
 
-// Set JWT token from localStorage for authenticated requests
 const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 if (token) {
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -63,15 +63,14 @@ function CartItem({ initialItem, onRemove, onQtyChange }) {
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([]);
 
-  // Fetch cart items from backend API
+  
   const fetchCartItems = async () => {
     try {
       const res = await api.get("/cart");
-      // Backend returns cart items with product embedded or product IDs — adjust as needed
-      // Here assume each cart item: { product: {...}, qty }
+      
       setCartItems(
         res.data.map((c) => ({
-          ...(c.product || c), // for backward compatibility
+          ...(c.product || c), 
           qty: c.qty || 1,
         }))
       );
@@ -84,7 +83,6 @@ export default function CartPage() {
     fetchCartItems();
   }, []);
 
-  // Remove item API call
   const removeFromCart = async (id) => {
     try {
       await api.post("/cart/remove", { productId: id });
@@ -94,7 +92,7 @@ export default function CartPage() {
     }
   };
 
-  // Change quantity API call
+  
   const changeQty = async (id, qty) => {
     try {
       await api.post("/cart/update", { productId: id, qty });
